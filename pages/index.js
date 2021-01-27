@@ -76,6 +76,6 @@ export default function Home() {
         <Footer />
       </QuizContainer>
       <GitHubCorner projectUrl="https://github.com/hmriq" />
-    </QuizBackGround>
+    </QuizBackground>
   );
 }
