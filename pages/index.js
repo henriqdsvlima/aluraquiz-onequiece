@@ -6,11 +6,9 @@ import { useRouter } from 'next/router';
 import db from '../db.json';
 import Widget from '../src/components/Widget';
 import QuizLogo from '../src/components/QuizLogo';
-import QuizBackground from '../src/components/QuizBackGround';
+import QuizBackground from '../src/components/QuizBackground';
 import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
-import Input from '../src/components/Input';
-import Button from '../src/components/Button';
 
 // const BackgroundImage = styled.div`
 //   background-image: url(${db.bg});
@@ -19,7 +17,7 @@ import Button from '../src/components/Button';
 //   background-position: center;
 // `;
 
-const QuizContainer = styled.div`
+export const QuizContainer = styled.div`
   width: 100%;
   max-width: 350px;
   padding-top: 45px;
@@ -37,31 +35,33 @@ export default function Home() {
   return (
     <QuizBackground backgroundImage={db.bg}>
       <Head>
-        <title>{db.title}</title>
+        <title>AluraQuiz - Modelo Base</title>
       </Head>
       <QuizContainer>
         <QuizLogo />
         <Widget>
           <Widget.Header>
-            <h1>{db.title}</h1>
+            <h1>One Piece</h1>
           </Widget.Header>
           <Widget.Content>
-            <p>{db.description}</p>
             <form onSubmit={function (infosDoEvento) {
               infosDoEvento.preventDefault();
               router.push(`/quiz?name=${name}`);
               console.log('Fazendo uma submissão por meio do react');
             }}
             >
-              <Input
-                name="nomeDoUsuario"
-                onChange={(infosDoEvento) => setName(infosDoEvento.target.value)}
+              <input
+                onChange={function (infosDoEvento) {
+                  console.log(infosDoEvento.target.value);
+                  // State
+                  // name = infosDoEvento.target.value;
+                  setName(infosDoEvento.target.value);
+                }}
                 placeholder="Diz ai seu nome"
-                value={name}
               />
-              <Button type="submit" disabled={name.length === 0}>
-                {`Jogar ${name}`}
-              </Button>
+              <button type="submit" disabled={name.length === 0}>
+                Jogar
+              </button>
             </form>
           </Widget.Content>
         </Widget>
